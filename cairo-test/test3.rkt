@@ -1,6 +1,6 @@
 #lang racket
 (require "dot-method.rkt")
-(require "low-level-cairo.rkt")
+(require cairo)
 (require (rename-in "dot-method.rkt"
                     [dot-app  #%app]
                     [dot-top  #%top]))
