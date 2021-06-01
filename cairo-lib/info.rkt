@@ -1,6 +1,6 @@
 #lang info
 
-(define collection "cairo")
+(define collection 'multi)
 
 (define deps '("base"))
 

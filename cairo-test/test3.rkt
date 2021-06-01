@@ -1,19 +1,20 @@
 #lang racket
-(require "dot-method.rkt")
+(require "dot-method.rkt" racket/draw)
 (require cairo)
 (require (rename-in "dot-method.rkt"
                     [dot-app  #%app]
                     [dot-top  #%top]))
 
 (define dest          (new ImageSurface  [width 400] [height 400]))
+
 (define cr            (new Context       [target dest]))
 (define blue          (new SolidPattern  [red 0] [blue 1] [green 0] [alpha 1]))
 (define white         (new SolidPattern  [red 1] [blue 1] [green 1] [alpha 1]))
 (define mesh-pattern  (new MeshPattern))
 
 (define logo         (new ImageSurface   [bitmap (make-object bitmap% "racket-logo.png")]))
-(define logo-context (new Context        [target  logo]))
-(define logo-pattern (new SurfacePattern [surface logo]))
+;(define logo-context (new Context        [target  logo]))
+;(define logo-pattern (new SurfacePattern [surface logo]))
 
 (send* mesh-pattern
   (begin-patch)
@@ -27,9 +28,10 @@
     (set-corner-color-rgb 2  0 0 1)
     (set-corner-color-rgb 3  1 1 0)
   (end-patch))
-(send* dest2-context
-  (set-source white-pattern)
+
+(send* cr
+  (set-source white)
   (paint)
   (set-source mesh-pattern)
   (paint))
-(send dest2 get-bitmap)
+(send dest get-bitmap)
