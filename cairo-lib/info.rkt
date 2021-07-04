@@ -2,7 +2,7 @@
 
 (define collection 'multi)
 
-(define deps '("base"))
+(define deps '("base" "draw-lib"))
 
 (define build-deps '())
 
