@@ -2,7 +2,7 @@
 
 (define collection "cairo-test")
 
-(define deps '("base" "cairo"))
+(define deps '("base" "cairo" "draw-lib"))
 
 (define build-deps '())
 
