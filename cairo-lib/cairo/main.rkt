@@ -436,7 +436,7 @@
     (define/public (init xx yx xy yy x0 y0)
       ; x_new = xx * x + xy * y + x0;
       ; y_new = yx * x + yy * y + y0;
-      (cairo_matrix_init xx yx xy yy x0 y0))
+      (cairo_matrix_init matrix xx yx xy yy x0 y0))
     (define/public (init-identity)
       (cairo_matrix_init_identity matrix))
 
