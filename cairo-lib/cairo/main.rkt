@@ -108,7 +108,7 @@
 ;;; Enumerations
 ;;;
 
-(define-enum content        ([color #x1000] [alpha #x2000] [color-alpha #x4000]))
+(define-enum content        ([color #x1000] [alpha #x2000] [color-alpha #x3000]))
 (define-enum surface-type   (image pdf ps xlib xcb glitz quartz win32 beos directfb svg 
                                    os2 win32-printing quartz-image script qt recording
                                    vg gl drm tee xml skia subsurface cogl))
@@ -129,7 +129,7 @@
                               difference exclusion hsl-hue hsl-saturation hsl-color
                               hsl-luminosity))
 ;; image formats
-(define-enum image-format (invalid argb32 rgb24 a8 a1 rgb16-565 rgb30))
+(define-enum image-format ([invalid -1] argb32 rgb24 a8 a1 rgb16-565 rgb30 rgb96f rgba128f))
 ;;  argb32     each pixel 32 bits
 ;;  rgb24      each pixel 32 bits, upper 8 bits unused
 ;;  a8         each pixel 8 bits, only alpha
@@ -184,6 +184,9 @@
            [surface raw-surface] [width width] [height height]))    
     ;; (define/public (status)
     ;;   (cairo_surface_status surface))
+    (define/public (get-content)
+      (define content (cairo_surface_get_content surface))
+      (content-symbol content))
     (define/public (flush)
       (cairo_surface_flush surface))
     (define/public (mark-dirty)
@@ -314,7 +317,8 @@
                                       format)]))
 
     (define/public (get-format)
-      (image-format-symbol (cairo_image_surface_get_format surface)))
+      (define format (cairo_image_surface_get_format surface))
+      (image-format-symbol format))
 
     (define/public (get-width)
       (cairo_image_surface_get_width surface))

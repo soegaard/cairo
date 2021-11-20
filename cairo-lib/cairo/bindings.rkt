@@ -312,6 +312,8 @@
 
 (define-cairo cairo_surface_mark_dirty_rectangle (_cfun _cairo_surface_t-pointer _int _int _int _int -> _void))
 
+(define-cairo cairo_surface_get_content (_cfun _cairo_surface_t-pointer -> _int))
+
 ;;; Image Surfaces
 
 (define-cairo cairo_format_stride_for_width       (_cfun _int _int                    -> _int))
