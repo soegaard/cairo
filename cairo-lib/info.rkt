@@ -10,6 +10,6 @@
 
 (define pkg-authors '(soegaard))
 
-(define version "1.0")
+(define version "1.1") ; Due to issue #48 in sketching
 
 (define test-responsibles '((all jensaxel@soegaard.net)))
